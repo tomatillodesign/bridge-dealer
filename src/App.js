@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">Bridge Dealer</header>
+      <header className="App-header"><a href="/">Bridge Dealer</a></header>
       <Router />
     </div>
   );

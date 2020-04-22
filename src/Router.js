@@ -3,6 +3,8 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
 import CreateGame from './CreateGame';
 import LiveGame from './LiveGame';
+import base from './base';
+import { firebaseApp } from './base';
 
 class Router extends React.Component {
 
@@ -17,20 +19,52 @@ class Router extends React.Component {
      }
 
 
+
+     componentDidMount(){
+
+       console.log("componentDidMount");
+       // Firebase Connections
+
+       base.syncState('allGames', {
+         context: this,
+         state: 'allGames',
+         asArray: true
+       });
+
+       base.syncState('allPlayerNames', {
+         context: this,
+         state: 'allPlayerNames',
+         asArray: true
+       });
+
+  }
+
+
+
+
+
      createNewGame = (gameID) => {
           console.log(gameID);
-          const allGames = [...this.state.allGames, gameID];
-          this.setState({
-             allGames: allGames
-          });
+          // const allGames = [...this.state.allGames, gameID];
+          // this.setState({
+          //    allGames: allGames
+          // });
+          const gameNumber = parseInt(gameID);
+          this.setState(prevState => ({
+            allGames: [...prevState.allGames, gameNumber],
+          }));
      }
 
      createNewPlayerName = (playerName) => {
           console.log(playerName);
-          const allPlayerNames = [...this.state.allGames, playerName];
-          this.setState({
-             allPlayerNames: allPlayerNames
-          });
+          // const allPlayerNames = [...this.state.allPlayerNames, playerName];
+          // this.setState({
+          //    allPlayerNames: allPlayerNames
+          // });
+          this.setState(prevState => ({
+            allPlayerNames: [...prevState.allPlayerNames, playerName],
+          }));
+
      }
 
 
@@ -39,6 +73,7 @@ class Router extends React.Component {
      render() {
 
           console.log(this.state.allGames);
+          console.log(this.state.allPlayerNames);
 
           return(
 
@@ -47,14 +82,20 @@ class Router extends React.Component {
                          <Switch>
                          <Route exact path="/"render={(props) => <Landing {...props}
                               createNewPlayerName={this.createNewPlayerName}
+                              allPlayerNames={this.state.allPlayerNames}
+                              allGames={this.state.allGames}
                          />}
                          />
                               <Route exact path="/create" render={(props) => <CreateGame {...props}
                                    createNewGame={this.createNewGame}
+                                   createNewPlayerName={this.createNewPlayerName}
+                                   allPlayerNames={this.state.allPlayerNames}
+                                   allGames={this.state.allGames}
                               />}
                               />
                               <Route path="/game/:gameID" render={(props) => <LiveGame {...props}
-
+                                   allPlayerNames={this.state.allPlayerNames}
+                                   allGames={this.state.allGames}
                               />}
                               />
                               <Route component={() => <Landing />}

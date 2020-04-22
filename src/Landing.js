@@ -3,6 +3,7 @@ import LiveGame from './LiveGame';
 import GameForm from './GameForm';
 import CreateGame from './CreateGame';
 import { Link, Redirect } from "react-router-dom";
+import ChoosePosition from './ChoosePosition';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -13,6 +14,7 @@ class Landing extends React.Component {
           this.state = {
                gameID: '',
                playerName: '',
+               position: '',
                gameFormActive: false,
                joinedGame: false,
           }
@@ -52,6 +54,12 @@ class Landing extends React.Component {
       }
 
 
+      changePosition = ( option ) => {
+           this.setState({
+              position: option
+           });
+      }
+
 
      render() {
 
@@ -59,19 +67,25 @@ class Landing extends React.Component {
           console.log(this.state.playerName);
           console.log(this.props.allGames);
 
+          const thisGame = parseInt(this.state.gameID);
+
           let landingTop = null;
           let gameIDForm = null;
           let showGame = null;
 
-          if (this.state.joinedGame === true) {
+          if (this.state.joinedGame === true && this.props.allGames.includes(thisGame)) {
            return <Redirect to={{
              pathname: `/game/${this.state.gameID}`,
              data: {
-                  gameID: this.state.gameID,
-                  playerName: this.state.playerName
+                  gameID: thisGame,
+                  playerName: this.state.playerName,
+                  position: this.state.position.value
              }
            }} />
-         }
+      } else if (this.state.joinedGame === true && !this.props.allGames.includes(thisGame)) {
+           console.log(parseInt(this.state.gameID));
+           return (<p>That game does not exist. Create a new game or try again.</p>);
+      }
 
           if( (this.state.gameFormActive === false && this.state.gameID === '') || this.state.gameFormActive === true ) {
                landingTop = (
@@ -94,6 +108,9 @@ class Landing extends React.Component {
                         GameID #:
                         <input type="number" value={this.state.gameID} onChange={this.handleGameChange} required />
                      </label>
+                     <ChoosePosition
+                         changePosition={this.changePosition}
+                       />
                      <input type="submit" value="Join Game Now" />
                     </form>
                );

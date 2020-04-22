@@ -1,6 +1,9 @@
 import React from 'react';
 import playingCards from './playingCards';
 
+import base from './base';
+import { firebaseApp } from './base';
+
 const shortid = require('shortid');
 
 ///////////////////////////////////////////////////////////////////////
@@ -83,19 +86,101 @@ class LiveGame extends React.Component {
 
           //console.log(this.props.location);
 
-          let currentGameID = 123;
-          let playerName = 'CLB';
+          console.log("componentDidMount");
+          let currentGameID = '123';
+          // let playerName = 'TESTING';
+          let playerName = '';
+          let position = {};
+          position.value = 'north';
+
           if( this.props.location.data !== undefined ) {
-               currentGameID = this.props.location.data.gameID;
+               currentGameID = parseInt(this.props.location.data.gameID);
+               // playerName = this.props.location.data.playerName;
                playerName = this.props.location.data.playerName;
+               console.log(this.props.location.data.playerName);
+               console.log(this.props.location.data.position);
+               position.value = this.props.location.data.position;
           }
+
+          let northName = this.state.northName;
+          let southName = this.state.southName;
+          let eastName = this.state.eastName;
+          let westName = this.state.westName;
+
+          console.log(position.value);
+          console.log(playerName);
+          console.log(northName);
+
+          if( position.value === 'north' ) { console.log("position.value === 'north'"); northName = playerName; }
+          if( position.value === 'south' ) { console.log("position.value === 'south'"); southName = playerName; }
+          if( position.value === 'east' ) { eastName = playerName; }
+          if( position.value === 'west' ) { westName = playerName; }
+
+          console.log(position.value);
+          console.log(playerName);
 
           // setup the card table
           this.setState({
                gameID: currentGameID,
-               northName: playerName,
                loggedIn: playerName,
+               northName: northName,
+               southName: southName,
+               eastName: eastName,
+               westName: westName,
           });
+
+
+            // Firebase Connections
+
+            base.syncState(`allGames/${currentGameID}/northCards`, {
+              context: this,
+              state: 'northCards',
+              asArray: true
+            });
+
+            base.syncState(`allGames/${currentGameID}/southCards`, {
+              context: this,
+              state: 'southCards',
+              asArray: true
+            });
+
+            base.syncState(`allGames/${currentGameID}/eastCards`, {
+              context: this,
+              state: 'eastCards',
+              asArray: true
+            });
+
+            base.syncState(`allGames/${currentGameID}/westCards`, {
+              context: this,
+              state: 'westCards',
+              asArray: true
+            });
+
+            // base.syncState(`allGames/${currentGameID}/northName`, {
+            //   context: this,
+            //   state: 'northName',
+            //   asArray: true
+            // });
+
+            base.fetch(`allGames/${currentGameID}/northName`, {
+              context: this,
+              asArray: false,
+              then(data){
+                   this.setState({
+                       northName: northName,
+                  });
+              }
+            });
+
+            base.fetch(`allGames/${currentGameID}/southName`, {
+              context: this,
+              asArray: false,
+              then(data){
+                   this.setState({
+                       southName: southName,
+                  });
+              }
+            });
 
      }
 
@@ -108,11 +193,27 @@ class LiveGame extends React.Component {
           console.log("EAST: " + JSON.stringify(this.state.eastCards));
           console.log("WEST: " + JSON.stringify(this.state.westCards));
 
+          console.log(this.state.loggedIn);
+          console.log(`North: ${this.state.northName}`);
+          console.log(`South: ${this.state.southName}`);
+          console.log(`East: ${this.state.eastName}`);
+          console.log(`West: ${this.state.westName}`);
+
+
           // see which player is logged in and show only their cards
           let northCardsDisplay = null;
           let southCardsDisplay = null;
           let eastCardsDisplay = null;
           let westCardsDisplay = null;
+
+          let dealNewHandButton = null;
+
+          // Check if game already exists
+          console.log(this.state.gameID);
+          console.log(this.props.allGames);
+          const currentGamesByID = Object.keys(this.props.allGames);
+          console.log(JSON.stringify(currentGamesByID));
+
 
           if( this.state.loggedIn === this.state.northName || this.state.loggedIn === 'clb' ) {
                northCardsDisplay = (
@@ -121,6 +222,7 @@ class LiveGame extends React.Component {
                          <p>{this.displayCards(this.state.northCards)}</p>
                     </div>
                );
+               dealNewHandButton = (<button onClick={this.dealNewHand}>Deal New Hand</button>);
           }
 
           if( this.state.loggedIn === this.state.southName || this.state.loggedIn === 'clb' ) {
@@ -153,7 +255,13 @@ class LiveGame extends React.Component {
           return (
                <>
                <h2>Let's Play! Game ID#: {this.state.gameID}</h2>
-               <button onClick={this.dealNewHand}>Deal New Hand</button>
+               {dealNewHandButton}
+               <div className="players">
+                    {`North: ${this.state.northName}`}
+                    {`South: ${this.state.southName}`}
+                    {`East: ${this.state.eastName}`}
+                    {`West: ${this.state.westName}`}
+               </div>
                <div className="hand-area">
                     {northCardsDisplay}
                     {southCardsDisplay}

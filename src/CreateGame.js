@@ -36,6 +36,8 @@ class CreateGame extends React.Component {
       handleGameSubmit = (event) => {
         event.preventDefault();
         console.log(event.target.value);
+        console.log(this.props.allGames);
+        this.props.createNewPlayerName(this.state.playerName);
         this.props.createNewGame(this.state.gameID);
         this.setState({
              createGameFormActive: false
@@ -46,12 +48,13 @@ class CreateGame extends React.Component {
 
      render() {
 
-          if (this.state.createGameFormActive == false) {
+          if (this.state.createGameFormActive === false) {
            return <Redirect to={{
              pathname: `/game/${this.state.gameID}`,
              data: {
                   gameID: this.state.gameID,
-                  playerName: this.state.playerName
+                  playerName: this.state.playerName,
+                  position: 'north',
              }
            }} />
          }
