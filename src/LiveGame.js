@@ -13,17 +13,11 @@ class LiveGame extends React.Component {
      constructor(props) {
           super(props);
           this.state = {
-               gameID: '',
-               players: [],
-               northName: '',
-               southName: '',
-               eastName: '',
-               westName: '',
+               northName: this.props.northName,
                northCards: [],
                southCards: [],
                eastCards: [],
                westCards: [],
-               loggedIn: '',
           }
 
           console.log(playingCards);
@@ -77,7 +71,7 @@ class LiveGame extends React.Component {
                northCards: northCards,
                southCards: southCards,
                eastCards: eastCards,
-               westCards: westCards
+               westCards: westCards,
           });
      }
 
@@ -85,59 +79,8 @@ class LiveGame extends React.Component {
 
      componentDidMount() {
 
-          //console.log(this.props.location);
-
-          console.log("componentDidMount");
-          let currentGameID = '123';
-          // let playerName = 'TESTING';
-          let playerName = '';
-          let position = {};
-          position.value = 'north';
-
-          if( this.props.location.data !== undefined ) {
-               currentGameID = parseInt(this.props.location.data.gameID);
-               // playerName = this.props.location.data.playerName;
-               playerName = this.props.location.data.playerName;
-               console.log(this.props.location.data.playerName);
-               console.log(this.props.location.data.position);
-               position.value = this.props.location.data.position;
-          }
-
-          let northName = this.state.northName;
-          let southName = this.state.southName;
-          let eastName = this.state.eastName;
-          let westName = this.state.westName;
-
-          console.log(position.value);
-          console.log(playerName);
-          console.log(northName);
-
-          if( position.value === 'north' ) { console.log("position.value === 'north'"); northName = playerName; }
-          if( position.value === 'south' ) { console.log("position.value === 'south'"); southName = playerName; }
-          if( position.value === 'east' ) { console.log("position.value === 'east'"); eastName = playerName; }
-          if( position.value === 'west' ) { console.log("position.value === 'west'"); westName = playerName; }
-
-          console.log(position.value);
-          console.log(playerName);
-
-          // setup the card table
-          this.setState({
-               gameID: currentGameID,
-               loggedIn: playerName,
-               northName: northName,
-               southName: southName,
-               eastName: eastName,
-               westName: westName,
-          });
-
-
-            // Firebase Connections
-
-            base.syncState(`allGames/${currentGameID}/players`, {
-              context: this,
-              state: 'players',
-              asArray: true
-            });
+          console.log("componentDidMount LiveGame");
+          const currentGameID = this.props.gameID;
 
             base.syncState(`allGames/${currentGameID}/northCards`, {
               context: this,
@@ -163,18 +106,11 @@ class LiveGame extends React.Component {
               asArray: true
             });
 
-
-            let previousPlayers = [...this.state.players];
-            let updatedPlayers = [...previousPlayers, { northName: northName, southName: southName, eastName: eastName }];
-            this.setState({ players: updatedPlayers });
-
-            // base.syncState(`allGames/${currentGameID}/players`, {
-            //   context: this,
-            //   state: 'players',
-            //   asArray: true
-            // });
-
-
+            base.syncState(`allGames/${currentGameID}/northName`, {
+              context: this,
+              state: 'northName',
+              asArray: false
+            });
 
      }
 
@@ -187,11 +123,11 @@ class LiveGame extends React.Component {
           console.log("EAST: " + JSON.stringify(this.state.eastCards));
           console.log("WEST: " + JSON.stringify(this.state.westCards));
 
-          console.log(this.state.loggedIn);
-          console.log(`North: ${this.state.northName}`);
-          console.log(`South: ${this.state.southName}`);
-          console.log(`East: ${this.state.eastName}`);
-          console.log(`West: ${this.state.westName}`);
+          console.log(this.props.loggedIn);
+          console.log(`North: ${this.props.northName}`);
+          console.log(`South: ${this.props.southName}`);
+          console.log(`East: ${this.props.eastName}`);
+          console.log(`West: ${this.props.westName}`);
 
 
           // see which player is logged in and show only their cards
@@ -202,14 +138,7 @@ class LiveGame extends React.Component {
 
           let dealNewHandButton = null;
 
-          // Check if game already exists
-          console.log(this.state.gameID);
-          console.log(this.props.allGames);
-          const currentGamesByID = Object.keys(this.props.allGames);
-          console.log(JSON.stringify(currentGamesByID));
-
-
-          if( this.state.loggedIn === this.state.northName || this.state.loggedIn === 'clb' ) {
+          if( this.props.loggedIn === this.state.northName || this.state.loggedIn === 'clb' ) {
                northCardsDisplay = (
                     <div className="single-hand">
                          <h3>North - {this.state.northName}</h3>
@@ -246,15 +175,17 @@ class LiveGame extends React.Component {
                );
           }
 
+          console.log(this.state.northName);
+
           return (
                <>
-               <h2>Let's Play! Game ID#: {this.state.gameID}</h2>
+               <h2>Let's Play! Game ID#: {this.props.gameID}</h2>
                {dealNewHandButton}
                <div className="players">
-                    {`North: ${this.state.northName}`}
-                    {`South: ${this.state.southName}`}
-                    {`East: ${this.state.eastName}`}
-                    {`West: ${this.state.westName}`}
+                    {`North: ${this.props.northName}`}
+                    {`South: ${this.props.southName}`}
+                    {`East: ${this.props.eastName}`}
+                    {`West: ${this.props.westName}`}
                </div>
                <div className="hand-area">
                     {northCardsDisplay}

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link, Redirect } from "react-router-dom";
+import EnterGameID from './EnterGameID';
+import NameFormBasic from './NameFormBasic';
+import LiveGame from './LiveGame';
+import base from './base';
+import { firebaseApp } from './base';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -10,69 +14,103 @@ class CreateGame extends React.Component {
           this.state = {
                playerName: '',
                gameID: '',
-               createGameFormActive: true
+               isValidGameID: false
           }
 
      }
 
 
-     handleNameChange = (event) => {
-          console.log(event.target.value);
-         this.setState({
-              playerName: event.target.value,
-              gameFormActive: true
+
+     doesGameExist = (gameID) => {
+          console.log(gameID);
+
+          let allGamesByID = null;
+            base.fetch('allGames', {
+              context: this,
+              asArray: true
+            }).then(data => {
+
+              console.log(data);
+              // use mapping to get an array of all the GameIDs, then check that the new game is a unique number
+              allGamesByID = data;
+              console.log(allGamesByID);
+
+              // if new game number is unique, set isValidGameID to true and enter Name
+              this.setState({ isValidGameID: true, gameID: gameID });
+
+            }).catch(error => {
+              //handle error
          });
-       }
 
-       handleGameChange = (event) => {
-           console.log(event.target.value);
-          this.setState({
-               gameID: event.target.value,
-               gameFormActive: true
-          });
-        }
+            base.post(`allGames/${gameID}`, {
+                data: { gameID }
+              }).then(() => {
+                console.log("Created New Game");
+              }).catch(err => {
+                // handle error
+              });
+
+     }
 
 
-      handleGameSubmit = (event) => {
-        event.preventDefault();
-        console.log(event.target.value);
-        console.log(this.props.allGames);
-        this.props.createNewPlayerName(this.state.playerName);
-        this.props.createNewGame(this.state.gameID);
-        this.setState({
-             createGameFormActive: false
-        });
-      }
+
+     setPlayerName = (name) => {
+         console.log(name);
+         this.setState({ playerName: name });
+
+
+         base.post(`allGames/${this.state.gameID}/northName`, {
+              data: { name }
+            }).then(() => {
+              console.log("Added New Player");
+            }).catch(err => {
+              // handle error
+            });
+
+
+
+     }
+
 
 
 
      render() {
 
-          if (this.state.createGameFormActive === false) {
-           return <Redirect to={{
-             pathname: `/game/${this.state.gameID}`,
-             data: {
-                  gameID: this.state.gameID,
-                  playerName: this.state.playerName,
-                  position: 'north',
-             }
-           }} />
-         }
+          let liveGame = null
+          if( this.state.playerName && this.state.gameID ) {
+               liveGame = ( <LiveGame
+                                   loggedIn={this.state.playerName}
+                                   northName={this.state.playerName}
+                                   gameID={this.state.gameID}
+                              />);
+          }
+
+          let nameForm = null;
+          if( this.state.isValidGameID && !this.state.playerName ) {
+               nameForm = (
+                              <>
+                              <h2>Create a New Game</h2>
+                              <NameFormBasic
+                                   setPlayerName={this.setPlayerName}
+                              />
+                              </>
+                         );
+          } else if ( this.state.isValidGameID && this.state.playerName ) {
+               nameForm = null;
+          }
 
           return (
                <>
-               <h2>Create a New Game</h2>
-               <form onSubmit={this.handleGameSubmit}>
-               <label>
-                  Your Name:
-                  <input type="text" value={this.state.playerName} onChange={this.handleNameChange} required />
-               </label>
-                 <label>
-                    GameID #:
-                    <input type="number" value={this.state.gameID} onChange={this.handleGameChange} required />
-                 </label>
-                 <input type="submit" value="Create Game Now" />
-               </form>
+               { this.state.isValidGameID === false &&
+                    <>
+                    <h2>Create a New Game</h2>
+                    <EnterGameID
+                         doesGameExist={this.doesGameExist}
+                    />
+                    </>
+               }
+               { nameForm }
+               { liveGame }
                </>
 
           );

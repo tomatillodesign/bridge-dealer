@@ -9,9 +9,18 @@ class Landing extends React.Component {
      constructor(props) {
           super(props);
           this.state = {
-
+               currentGameID: null,
+               createGame: false,
+               joinGame: false
           }
 
+     }
+
+     creatingNewGame = (event) => {
+          event.preventDefault();
+          this.setState({
+             createGame: true
+          });
      }
 
      // joinGame = (event) => {
@@ -56,13 +65,23 @@ class Landing extends React.Component {
 
      render() {
 
-          return(
-
-               <div className="single-page landing">
+          // decide what to show visitors in the app
+          let appView = (
+               <div className="action-button-area">
                     <button>Join Game</button>
-                    <button>Create New Game</button>
-               </div>
+                    <button onClick={this.creatingNewGame}>Create New Game</button>
+               </div>);
 
+          if( this.state.createGame === true ) {
+               appView = (
+                    <CreateGame />
+               );
+          }
+
+          return(
+               <div className="single-page-area">
+                    {appView}
+               </div>
           );
 
      }
