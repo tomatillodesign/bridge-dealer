@@ -14,6 +14,7 @@ class LiveGame extends React.Component {
           super(props);
           this.state = {
                gameID: '',
+               players: [],
                northName: '',
                southName: '',
                eastName: '',
@@ -113,8 +114,8 @@ class LiveGame extends React.Component {
 
           if( position.value === 'north' ) { console.log("position.value === 'north'"); northName = playerName; }
           if( position.value === 'south' ) { console.log("position.value === 'south'"); southName = playerName; }
-          if( position.value === 'east' ) { eastName = playerName; }
-          if( position.value === 'west' ) { westName = playerName; }
+          if( position.value === 'east' ) { console.log("position.value === 'east'"); eastName = playerName; }
+          if( position.value === 'west' ) { console.log("position.value === 'west'"); westName = playerName; }
 
           console.log(position.value);
           console.log(playerName);
@@ -131,6 +132,12 @@ class LiveGame extends React.Component {
 
 
             // Firebase Connections
+
+            base.syncState(`allGames/${currentGameID}/players`, {
+              context: this,
+              state: 'players',
+              asArray: true
+            });
 
             base.syncState(`allGames/${currentGameID}/northCards`, {
               context: this,
@@ -156,31 +163,18 @@ class LiveGame extends React.Component {
               asArray: true
             });
 
-            // base.syncState(`allGames/${currentGameID}/northName`, {
+
+            let previousPlayers = [...this.state.players];
+            let updatedPlayers = [...previousPlayers, { northName: northName, southName: southName, eastName: eastName }];
+            this.setState({ players: updatedPlayers });
+
+            // base.syncState(`allGames/${currentGameID}/players`, {
             //   context: this,
-            //   state: 'northName',
+            //   state: 'players',
             //   asArray: true
             // });
 
-            base.fetch(`allGames/${currentGameID}/northName`, {
-              context: this,
-              asArray: false,
-              then(data){
-                   this.setState({
-                       northName: northName,
-                  });
-              }
-            });
 
-            base.fetch(`allGames/${currentGameID}/southName`, {
-              context: this,
-              asArray: false,
-              then(data){
-                   this.setState({
-                       southName: southName,
-                  });
-              }
-            });
 
      }
 
