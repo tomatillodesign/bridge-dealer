@@ -14,10 +14,16 @@ class LiveGame extends React.Component {
           super(props);
           this.state = {
                northName: this.props.northName,
+               southName: this.props.southName,
+               eastName: this.props.eastName,
+               westName: this.props.westName,
+               loggedIn: this.props.loggedIn,
                northCards: [],
                southCards: [],
                eastCards: [],
                westCards: [],
+               allHands: [],
+               timestampLastDeal: null
           }
 
           console.log(playingCards);
@@ -56,6 +62,16 @@ class LiveGame extends React.Component {
 
      dealNewHand = () => {
 
+          // add the previous hand into allHands for historical reference
+          let previousHand = [];
+          previousHand['northCards'] = this.state.northCards;
+          previousHand['southCards'] = this.state.southCards;
+          previousHand['eastCards'] = this.state.eastCards;
+          previousHand['westCards'] = this.state.westCards;
+          this.setState(prevState => ({
+               allHands: [...prevState.allHands, previousHand],
+          }));
+
           const newDeck = [...playingCards];
           console.log(newDeck);
 
@@ -72,6 +88,7 @@ class LiveGame extends React.Component {
                southCards: southCards,
                eastCards: eastCards,
                westCards: westCards,
+               timestampLastDeal: Date.now()
           });
      }
 
@@ -106,11 +123,71 @@ class LiveGame extends React.Component {
               asArray: true
             });
 
-            base.syncState(`allGames/${currentGameID}/northName`, {
+            base.syncState(`allGames/${currentGameID}/allHands`, {
               context: this,
-              state: 'northName',
+              state: 'allHands',
+              asArray: true
+            });
+
+            base.syncState(`allGames/${currentGameID}/timestampLastDeal`, {
+              context: this,
+              state: 'timestampLastDeal',
               asArray: false
             });
+
+            /// Fetch all of the player names ///////////////////////////////
+            base.fetch(`allGames/${currentGameID}`, {
+             context: this,
+             asArray: false
+           }).then(data => {
+
+             console.log(data);
+
+             this.setState({
+                  northName: data.northName,
+                  southName: data.southName,
+                  eastName: data.eastName,
+                  westName: data.westName
+             });
+
+           }).catch(error => {
+             //handle error
+        });
+
+
+        // listen to the gameID endpoint to see if new players are added - SOUTHNAME
+        base.listenTo(`allGames/${currentGameID}/southName`, {
+         context: this,
+         asArray: false,
+         then(data){
+           console.log("UPDATED DATA ///////////////////////////////////////////");
+           console.log(data);
+            this.setState({ southName: data });
+         }
+       })
+
+       // listen to the gameID endpoint to see if new players are added - SOUTHNAME
+       base.listenTo(`allGames/${currentGameID}/eastName`, {
+       context: this,
+       asArray: false,
+       then(data){
+          console.log("UPDATED DATA ///////////////////////////////////////////");
+          console.log(data);
+          this.setState({ eastName: data });
+       }
+     })
+
+        // listen to the gameID endpoint to see if new players are added - WESTNAME
+        base.listenTo(`allGames/${currentGameID}/westName`, {
+         context: this,
+         asArray: false,
+         then(data){
+           console.log("UPDATED DATA ///////////////////////////////////////////");
+           console.log(data);
+            this.setState({ westName: data });
+         }
+       })
+
 
      }
 
@@ -118,16 +195,16 @@ class LiveGame extends React.Component {
 
      render() {
 
-          console.log("NORTH: " + JSON.stringify(this.state.northCards));
-          console.log("SOUTH: " + JSON.stringify(this.state.southCards));
-          console.log("EAST: " + JSON.stringify(this.state.eastCards));
-          console.log("WEST: " + JSON.stringify(this.state.westCards));
-
-          console.log(this.props.loggedIn);
-          console.log(`North: ${this.props.northName}`);
-          console.log(`South: ${this.props.southName}`);
-          console.log(`East: ${this.props.eastName}`);
-          console.log(`West: ${this.props.westName}`);
+          // console.log("NORTH: " + JSON.stringify(this.state.northCards));
+          // console.log("SOUTH: " + JSON.stringify(this.state.southCards));
+          // console.log("EAST: " + JSON.stringify(this.state.eastCards));
+          // console.log("WEST: " + JSON.stringify(this.state.westCards));
+          //
+          // console.log(this.props.loggedIn);
+          // console.log(`North: ${this.state.northName}`);
+          // console.log(`South: ${this.state.southName}`);
+          // console.log(`East: ${this.state.eastName}`);
+          // console.log(`West: ${this.state.westName}`);
 
 
           // see which player is logged in and show only their cards
@@ -145,7 +222,10 @@ class LiveGame extends React.Component {
                          <p>{this.displayCards(this.state.northCards)}</p>
                     </div>
                );
-               dealNewHandButton = (<button onClick={this.dealNewHand}>Deal New Hand</button>);
+
+               if( this.state.northName && this.state.southName && this.state.eastName && this.state.westName ) {
+                    dealNewHandButton = (<button onClick={this.dealNewHand}>Deal New Hand</button>);
+               }
           }
 
           if( this.state.loggedIn === this.state.southName || this.state.loggedIn === 'clb' ) {
@@ -182,10 +262,10 @@ class LiveGame extends React.Component {
                <h2>Let's Play! Game ID#: {this.props.gameID}</h2>
                {dealNewHandButton}
                <div className="players">
-                    {`North: ${this.props.northName}`}
-                    {`South: ${this.props.southName}`}
-                    {`East: ${this.props.eastName}`}
-                    {`West: ${this.props.westName}`}
+                    {`North: ${this.state.northName}`}
+                    {`South: ${this.state.southName}`}
+                    {`East: ${this.state.eastName}`}
+                    {`West: ${this.state.westName}`}
                </div>
                <div className="hand-area">
                     {northCardsDisplay}
