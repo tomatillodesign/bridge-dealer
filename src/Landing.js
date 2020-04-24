@@ -23,44 +23,13 @@ class Landing extends React.Component {
           });
      }
 
-     // joinGame = (event) => {
-     //      event.preventDefault();
-     //      this.setState({
-     //         gameFormActive: true
-     //      });
-     // }
-     //
-     // handleNameChange = (event) => {
-     //     this.setState({
-     //          playerName: event.target.value,
-     //          gameFormActive: true
-     //     });
-     //   }
-     //
-     //   handleGameChange = (event) => {
-     //      this.setState({
-     //           gameID: event.target.value,
-     //           gameFormActive: true
-     //      });
-     //    }
-     //
-     //
-     //  handleJoinGameSubmit = (event) => {
-     //    event.preventDefault();
-     //    console.log(event.target.value);
-     //    this.props.createNewPlayerName(this.state.playerName);
-     //    this.setState({
-     //         gameFormActive: false,
-     //         joinedGame: true
-     //    });
-     //  }
-     //
-     //
-     //  changePosition = ( option ) => {
-     //       this.setState({
-     //          position: option
-     //       });
-     //  }
+
+     joiningAGame = (event) => {
+          event.preventDefault();
+          this.setState({
+             joinGame: true
+          });
+     }
 
 
      render() {
@@ -68,13 +37,19 @@ class Landing extends React.Component {
           // decide what to show visitors in the app
           let appView = (
                <div className="action-button-area">
-                    <button>Join Game</button>
+                    <button onClick={this.joiningAGame}>Join Game</button>
                     <button onClick={this.creatingNewGame}>Create New Game</button>
                </div>);
 
           if( this.state.createGame === true ) {
                appView = (
                     <CreateGame />
+               );
+          }
+
+          if( this.state.joinGame === true ) {
+               appView = (
+                    <JoinGame />
                );
           }
 
