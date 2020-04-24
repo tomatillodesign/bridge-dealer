@@ -40,7 +40,7 @@ class SelectPosition extends React.Component {
                     value="South"
                     checked={this.state.position === "South"}
                     onChange={this.handleOptionChange}
-                    className="form-check-input"
+                    className="form-check-input form-radio"
                    />
                    South
                  </label>
@@ -57,7 +57,7 @@ class SelectPosition extends React.Component {
                     value="East"
                     checked={this.state.position === "East"}
                     onChange={this.handleOptionChange}
-                    className="form-check-input"
+                    className="form-check-input form-radio"
                    />
                    East
                  </label>
@@ -74,7 +74,7 @@ class SelectPosition extends React.Component {
                     value="West"
                     checked={this.state.position === "West"}
                     onChange={this.handleOptionChange}
-                    className="form-check-input"
+                    className="form-check-input form-radio"
                    />
                    West
                  </label>
@@ -84,7 +84,7 @@ class SelectPosition extends React.Component {
           return (
                <>
                <h3>Select a Seat at the Table: {this.state.position}</h3>
-               <form onSubmit={this.handleRadioSubmit}>
+               <form onSubmit={this.handleRadioSubmit} id="select-position-form">
 
                  {southRadioBtn}
                  {eastRadioBtn}

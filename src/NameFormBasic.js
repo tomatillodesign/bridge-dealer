@@ -26,9 +26,9 @@ class NameFormBasic extends React.Component {
 
           return (
                <>
-               <form onSubmit={this.handleNameSubmit}>
+               <form onSubmit={this.handleNameSubmit} id="name-form-basic">
                  <label>
-                    Enter Your Name:
+                    <span className="name-enter-text">Enter Your Name:</span>
                     <input type="text" value={this.state.name} onChange={this.handleNameChange} required />
                  </label>
                  <input type="submit" value="Submit" />

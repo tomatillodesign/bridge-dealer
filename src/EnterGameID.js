@@ -26,9 +26,9 @@ class EnterGameID extends React.Component {
 
           return (
                <>
-               <form onSubmit={this.handleGameSubmit}>
+               <form onSubmit={this.handleGameSubmit} id="create-new-game-form">
                  <label>
-                    Enter Game ID#:
+                    <span className="form-label-text">Enter Game ID#:</span>
                     <input type="number" value={this.state.gameID} onChange={this.handleGameIDChange} required />
                  </label>
                  <input type="submit" value="Create Game Now" />

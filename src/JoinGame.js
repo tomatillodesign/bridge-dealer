@@ -191,7 +191,6 @@ class JoinGame extends React.Component {
                <h2>Join a Game</h2>
                {warning}
                <div className="status-area">{status}</div>
-               <div className="available-seats">Available Seats: {this.state.availableSeats}</div>
                {form}
                </>
           );
