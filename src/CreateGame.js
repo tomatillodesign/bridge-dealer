@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link, Redirect } from "react-router-dom";
+import EnterGameID from './EnterGameID';
+import NameFormBasic from './NameFormBasic';
+import LiveGame from './LiveGame';
+import base from './base';
+import { firebaseApp } from './base';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -10,69 +14,138 @@ class CreateGame extends React.Component {
           this.state = {
                playerName: '',
                gameID: '',
-               createGameFormActive: true
+               isValidGameID: false,
+               duplicate: false,
           }
 
      }
 
 
-     handleNameChange = (event) => {
-          console.log(event.target.value);
-         this.setState({
-              playerName: event.target.value,
-              gameFormActive: true
+
+     doesGameExist = (id) => {
+
+          const gameID = parseInt(id);
+          console.log(parseInt(gameID));
+          let waitingCheck = true;
+
+          let allGamesByID = null;
+            base.fetch('allGames', {
+              context: this,
+              asArray: true
+            }).then(data => {
+
+              console.log(data);
+              // use mapping to get an array of all the GameIDs, then check that the new game is a unique number
+              allGamesByID = data.map(function(game) { return parseInt(game.gameID); });
+              if( allGamesByID.includes(gameID) ) {
+                   this.setState({ isValidGameID: false, duplicate: true });
+                   console.log("ALREADY TAKEN");
+                   waitingCheck = false;
+              } else {
+                   // if new game number is unique, set isValidGameID to true and enter Name
+                   console.log("WORKED");
+                   this.setState({ isValidGameID: true, gameID: gameID, duplicate: false });
+              }
+
+            }).catch(error => {
+              //handle error
          });
-       }
-
-       handleGameChange = (event) => {
-           console.log(event.target.value);
-          this.setState({
-               gameID: event.target.value,
-               gameFormActive: true
-          });
-        }
 
 
-      handleGameSubmit = (event) => {
-        event.preventDefault();
-        console.log(event.target.value);
-        console.log(this.props.allGames);
-        this.props.createNewPlayerName(this.state.playerName);
-        this.props.createNewGame(this.state.gameID);
-        this.setState({
-             createGameFormActive: false
-        });
-      }
 
+         // if( waitingCheck === false ) {
+         //
+         //         base.post(`allGames/${gameID}`, {
+         //             data: { gameID: gameID }
+         //           }).then(() => {
+         //             console.log("Created New Game via base.post");
+         //           }).catch(err => {
+         //             // handle error
+         //           });
+         //
+         //      }
+
+     }
+
+
+
+     setPlayerName = (name) => {
+         console.log(name);
+         this.setState({ playerName: name });
+
+
+         base.update(`allGames/${this.state.gameID}`, {
+              data: { northName: name }
+            }).then(() => {
+              console.log("Added New Player");
+            }).catch(err => {
+              // handle error
+            });
+
+     }
+
+
+     setGameID = (gameID) => {
+
+          base.post(`allGames/${gameID}`, {
+              data: { gameID: gameID }
+            }).then(() => {
+              console.log("Created New Game via base.post");
+            }).catch(err => {
+              // handle error
+            });
+
+     }
 
 
      render() {
 
-          if (this.state.createGameFormActive === false) {
-           return <Redirect to={{
-             pathname: `/game/${this.state.gameID}`,
-             data: {
-                  gameID: this.state.gameID,
-                  playerName: this.state.playerName,
-                  position: 'north',
-             }
-           }} />
-         }
+          console.log(this.state.duplicate);
+
+          let liveGame = null
+          if( this.state.playerName && this.state.gameID ) {
+               liveGame = ( <LiveGame
+                                   loggedIn={this.state.playerName}
+                                   northName={this.state.playerName}
+                                   gameID={this.state.gameID}
+                              />);
+          }
+
+          let nameForm = null;
+          if( this.state.isValidGameID && !this.state.playerName ) {
+               nameForm = (
+                              <>
+                              <h2>Create a New Game</h2>
+                              <NameFormBasic
+                                   setPlayerName={this.setPlayerName}
+                              />
+                              </>
+                         );
+               this.setGameID(this.state.gameID);
+          } else if ( this.state.isValidGameID && this.state.playerName ) {
+               nameForm = null;
+          }
+
+
+          let warning = null;
+          if( this.state.duplicate === true ) {
+               warning = (<div className="warning">Sorry, that game was already created. Try again?</div>);
+          }
+
 
           return (
                <>
-               <h2>Create a New Game</h2>
-               <form onSubmit={this.handleGameSubmit}>
-               <label>
-                  Your Name:
-                  <input type="text" value={this.state.playerName} onChange={this.handleNameChange} required />
-               </label>
-                 <label>
-                    GameID #:
-                    <input type="number" value={this.state.gameID} onChange={this.handleGameChange} required />
-                 </label>
-                 <input type="submit" value="Create Game Now" />
-               </form>
+               { this.state.isValidGameID === false &&
+                    <>
+                    <h2>Create a New Game</h2>
+                    {warning}
+                    <EnterGameID
+                         doesGameExist={this.doesGameExist}
+                    />
+                    </>
+               }
+               { nameForm }
+               { liveGame }
                </>
 
           );
