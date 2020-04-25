@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bridge-dealer/precache-manifest.ff89928de879dd2d2725b602f0fa57ec.js"
+  "/bridge-dealer/precache-manifest.8040c80382072bb228c5976445bb4a23.js"
 );
 
 self.addEventListener('message', (event) => {
