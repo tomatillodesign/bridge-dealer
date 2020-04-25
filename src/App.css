@@ -36,6 +36,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   color: #fff;
   font-size: 36px;
   font-size: 4rem;
+  box-shadow: 0 0 24px rgba(0,0,0, 0.25);
 }
 
 .App-header h1 {
@@ -328,6 +329,13 @@ footer a {
   flex: 1;
 }
 
+.action-button-area {
+     margin-top: 20px;
+}
+
+.action-button-area button {
+     font-family: 'Fredericka the Great', cursive;
+}
 
 
 
