@@ -85,8 +85,8 @@ class LiveGame extends React.Component {
           // order the cards by suit then value (high to low)
           cards.sort((a, b) => (a.suit < b.suit) ? 1 : (a.suit === b.suit) ? ((a.value < b.value) ? 1 : -1) : -1 )
 
-          const cardsToDisplay = cards.map((card) =>
-            <li key={shortid.generate()} className="card" id={card.abbr + '-' + card.suit} data-suit={card.suit} data-value={card.value} data-symbol={card.symbol} data-abbr={card.abbr}>
+          const cardsToDisplay = cards.map((card, index) =>
+            <li key={shortid.generate()} className="card" id={card.abbr + '-' + card.suit} data-index={index} data-suit={card.suit} data-value={card.value} data-symbol={card.symbol} data-abbr={card.abbr}>
               <div className="card-abbr">{card.abbr}</div>
               <div className="card-name">{card.name}</div>
               <div className="suit-symbol">{card.symbol}</div>

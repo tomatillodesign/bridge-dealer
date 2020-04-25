@@ -98,6 +98,7 @@ h2 {
      font-size: 18px;
      font-size: 1.8rem;
      max-width: 800px;
+     width: 100%;
      margin-left: auto;
      margin-right: auto;
 }
@@ -280,6 +281,7 @@ label
      box-shadow: 0 4px 16px rgba(0,0,0,.1);
      border: 3px solid #000;
      font-weight: 700;
+     opacity: 0;
 }
 
 .single-hand li.card[data-suit="Hearts"], .single-hand li.card[data-suit="Diamonds"]  {
@@ -336,6 +338,76 @@ footer a {
 .action-button-area button {
      font-family: 'Fredericka the Great', cursive;
 }
+
+
+
+
+
+/* --------- Animate the Cards ----------- */
+
+.card[data-index="0"] {
+     animation: fadeIn 2s linear 0s 1 normal forwards;
+}
+
+.card[data-index="1"] {
+     animation: fadeIn 2s linear 1s 1 normal forwards;
+}
+
+.card[data-index="2"] {
+     animation: fadeIn 2s linear 2s 1 normal forwards;
+}
+
+.card[data-index="3"] {
+     animation: fadeIn 2s linear 3s 1 normal forwards;
+}
+
+.card[data-index="4"] {
+     animation: fadeIn 2s linear 4s 1 normal forwards;
+}
+
+.card[data-index="5"] {
+     animation: fadeIn 2s linear 5s 1 normal forwards;
+}
+
+.card[data-index="6"] {
+     animation: fadeIn 2s linear 6s 1 normal forwards;
+}
+
+.card[data-index="7"] {
+     animation: fadeIn 2s linear 7s 1 normal forwards;
+}
+
+.card[data-index="8"] {
+     animation: fadeIn 2s linear 8s 1 normal forwards;
+}
+
+.card[data-index="9"] {
+     animation: fadeIn 2s linear 9s 1 normal forwards;
+}
+
+.card[data-index="10"] {
+     animation: fadeIn 2s linear 10s 1 normal forwards;
+}
+
+.card[data-index="11"] {
+     animation: fadeIn 2s linear 11s 1 normal forwards;
+}
+
+.card[data-index="12"] {
+     animation: fadeIn 2s linear 12s 1 normal forwards;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+
 
 
 
