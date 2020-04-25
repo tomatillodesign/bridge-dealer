@@ -38,6 +38,15 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
   font-size: 4rem;
 }
 
+.App-header h1 {
+     color: white;
+     font-family: 'Fredericka the Great', cursive;
+     color: #fff;
+     font-size: 36px;
+     font-size: 4rem;
+     font-weight: 400;
+}
+
 .App-header a {
      color: #fff;
      text-decoration: none;
@@ -74,6 +83,7 @@ html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:b
      background: #eee;
      border-radius: 8px;
      padding: 20px;
+     margin-bottom: 30px;
 }
 
 h2 {
@@ -223,7 +233,6 @@ label
 }
 
 .game-footer-info {
-     margin-top: 30px;
      color: #aaa;
      font-size: 13px;
      font-size: 1.3rem;
@@ -293,4 +302,94 @@ label
      font-size: 2.4rem;
      font-weight: 400;
      margin-top: 12px;
+}
+
+footer {
+     font-family: 'Fira Sans', sans-serif;
+     background: #250647;
+     color: #fff;
+     padding: 30px;
+     font-size: 13px;
+     margin-top: 30px;
+}
+
+footer a {
+     color: #fff;
+}
+
+.App {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.clb-grail-body {
+  display: flex;
+  flex: 1;
+}
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+
+     .App-header {
+       min-height: 0;
+     }
+
+     .App-header h1 {
+          font-size: 20px;
+          font-size: 2rem;
+     }
+
+     .single-page-area {
+          margin: 0;
+          padding: 0 20px;
+          text-align: center;
+          width: 100%;
+     }
+
+     .action-button-area button {
+          width: 100%;
+     }
+
+     h2.lets-play-headline {
+          margin-top: 12px;
+          margin-bottom: 4px;
+     }
+
+     .players-listing-area {
+          background: #fff;
+          color: #333;
+          font-size: 8px;
+          font-size: 0.8rem;
+          padding: 0;
+          margin-bottom: 4px;
+     }
+
+     .single-hand {
+          padding: 0;
+          background: #fff;
+     }
+
+     .single-hand li.card {
+          height: 130px;
+          width: 70px;
+          border-radius: 12px;
+          padding: 4px;
+     }
+
+     .suit-symbol {
+          margin-top: -6px;
+     }
+
+     .card-name {
+          margin-top: 0;
+     }
+
+     .card-abbr {
+          font-size: 40px;
+     }
+
 }
