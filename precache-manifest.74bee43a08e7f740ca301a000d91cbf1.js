@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1bc837b745ff0a9c98c3acf0be2cb912",
+    "revision": "abb8559bd54fff252165bde011a6b674",
     "url": "/bridge-dealer/index.html"
   },
   {
-    "revision": "ad1b470280abf07df7aa",
-    "url": "/bridge-dealer/static/css/main.95597194.chunk.css"
+    "revision": "63a06b9f110902c5bf8e",
+    "url": "/bridge-dealer/static/css/main.765bb533.chunk.css"
   },
   {
     "revision": "156b2a49e8a8bfae7a26",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ad1b470280abf07df7aa",
+    "revision": "63a06b9f110902c5bf8e",
     "url": "/bridge-dealer/static/js/main.5c7a233a.chunk.js"
   },
   {

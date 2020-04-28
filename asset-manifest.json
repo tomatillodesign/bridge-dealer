@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/bridge-dealer/static/css/main.95597194.chunk.css",
+    "main.css": "/bridge-dealer/static/css/main.765bb533.chunk.css",
     "main.js": "/bridge-dealer/static/js/main.5c7a233a.chunk.js",
     "main.js.map": "/bridge-dealer/static/js/main.5c7a233a.chunk.js.map",
     "runtime-main.js": "/bridge-dealer/static/js/runtime-main.e042c523.js",
@@ -8,16 +8,16 @@
     "static/js/2.3c00cb8c.chunk.js": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js",
     "static/js/2.3c00cb8c.chunk.js.map": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.map",
     "index.html": "/bridge-dealer/index.html",
-    "precache-manifest.1370d5190832a76aaa880924c849ddc3.js": "/bridge-dealer/precache-manifest.1370d5190832a76aaa880924c849ddc3.js",
+    "precache-manifest.74bee43a08e7f740ca301a000d91cbf1.js": "/bridge-dealer/precache-manifest.74bee43a08e7f740ca301a000d91cbf1.js",
     "service-worker.js": "/bridge-dealer/service-worker.js",
-    "static/css/main.95597194.chunk.css.map": "/bridge-dealer/static/css/main.95597194.chunk.css.map",
+    "static/css/main.765bb533.chunk.css.map": "/bridge-dealer/static/css/main.765bb533.chunk.css.map",
     "static/js/2.3c00cb8c.chunk.js.LICENSE.txt": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/bridge-dealer/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e042c523.js",
     "static/js/2.3c00cb8c.chunk.js",
-    "static/css/main.95597194.chunk.css",
+    "static/css/main.765bb533.chunk.css",
     "static/js/main.5c7a233a.chunk.js"
   ]
 }
