@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dd742ef30677bbb63b03c8084b8ad53d",
+    "revision": "1bc837b745ff0a9c98c3acf0be2cb912",
     "url": "/bridge-dealer/index.html"
   },
   {
-    "revision": "1fd0466e50838909e12d",
-    "url": "/bridge-dealer/static/css/main.775c0919.chunk.css"
+    "revision": "ad1b470280abf07df7aa",
+    "url": "/bridge-dealer/static/css/main.95597194.chunk.css"
   },
   {
-    "revision": "482b928f2474d41f1709",
-    "url": "/bridge-dealer/static/js/2.88bb370f.chunk.js"
+    "revision": "156b2a49e8a8bfae7a26",
+    "url": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js"
   },
   {
     "revision": "78aa0676509153305bde072ed1e9cb1c",
-    "url": "/bridge-dealer/static/js/2.88bb370f.chunk.js.LICENSE.txt"
+    "url": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1fd0466e50838909e12d",
-    "url": "/bridge-dealer/static/js/main.de678a78.chunk.js"
+    "revision": "ad1b470280abf07df7aa",
+    "url": "/bridge-dealer/static/js/main.5c7a233a.chunk.js"
   },
   {
     "revision": "9adc5f1944ea0b793b65",
