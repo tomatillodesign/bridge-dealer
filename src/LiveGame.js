@@ -3,8 +3,9 @@ import playingCards from './playingCards';
 
 import base from './base';
 import { firebaseApp } from './base';
-
+import { Beforeunload } from 'react-beforeunload';
 const shortid = require('shortid');
+
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -109,7 +110,7 @@ class LiveGame extends React.Component {
           }));
 
           const newDeck = [...playingCards];
-          console.log(newDeck);
+          //console.log(newDeck);
 
           // Deal the cards to each player!
           let cardsToDeal = this.shuffle(newDeck);
@@ -177,7 +178,7 @@ class LiveGame extends React.Component {
              asArray: false
            }).then(data => {
 
-             console.log(data);
+             //console.log(data);
 
              this.setState({
                   northName: data.northName,
@@ -196,8 +197,8 @@ class LiveGame extends React.Component {
          context: this,
          asArray: false,
          then(data){
-           console.log("UPDATED southName DATA ///////////////////////////////////////////");
-           console.log(data);
+           //console.log("UPDATED southName DATA ///////////////////////////////////////////");
+           //console.log(data);
             this.setState({ southName: data });
          }
        })
@@ -207,8 +208,8 @@ class LiveGame extends React.Component {
        context: this,
        asArray: false,
        then(data){
-          console.log("UPDATED eastName DATA ///////////////////////////////////////////");
-          console.log(data);
+          //console.log("UPDATED eastName DATA ///////////////////////////////////////////");
+          //console.log(data);
           this.setState({ eastName: data });
        }
      })
@@ -218,8 +219,8 @@ class LiveGame extends React.Component {
          context: this,
          asArray: false,
          then(data){
-           console.log("UPDATED westName DATA ///////////////////////////////////////////");
-           console.log(data);
+           //console.log("UPDATED westName DATA ///////////////////////////////////////////");
+           //console.log(data);
             this.setState({ westName: data });
          }
        })
@@ -239,17 +240,6 @@ class LiveGame extends React.Component {
 
 
      render() {
-
-          // console.log("NORTH: " + JSON.stringify(this.state.northCards));
-          // console.log("SOUTH: " + JSON.stringify(this.state.southCards));
-          // console.log("EAST: " + JSON.stringify(this.state.eastCards));
-          // console.log("WEST: " + JSON.stringify(this.state.westCards));
-          //
-          // console.log(this.props.loggedIn);
-          // console.log(`North: ${this.state.northName}`);
-          // console.log(`South: ${this.state.southName}`);
-          // console.log(`East: ${this.state.eastName}`);
-          // console.log(`West: ${this.state.westName}`);
 
 
           // see which player is logged in and show only their cards
@@ -311,7 +301,7 @@ class LiveGame extends React.Component {
 
           if( this.state.southName !== undefined && this.state.southName !== null ) {
                let eastCheck = Object.entries(this.state.southName).length === 0;
-               console.log(eastCheck);
+               //console.log(eastCheck);
                if( eastCheck ) {
                     southNameToPublish = (<span className="waiting-on-player">Waiting...</span>);
                }
@@ -319,7 +309,7 @@ class LiveGame extends React.Component {
 
           if( this.state.eastName !== undefined && this.state.eastName !== null ) {
                let eastCheck = Object.entries(this.state.eastName).length === 0;
-               console.log(eastCheck);
+               //console.log(eastCheck);
                if( eastCheck ) {
                     eastNameToPublish = (<span className="waiting-on-player">Waiting...</span>);
                }
@@ -327,7 +317,7 @@ class LiveGame extends React.Component {
 
           if( this.state.westName !== undefined && this.state.westName !== null ) {
                let eastCheck = Object.entries(this.state.westName).length === 0;
-               console.log(eastCheck);
+               //console.log(eastCheck);
                if( eastCheck ) {
                     westNameToPublish = (<span className="waiting-on-player">Waiting...</span>);
                }
@@ -354,6 +344,7 @@ class LiveGame extends React.Component {
                     }
                </div>
                <div className="game-footer-info">Game ID#: {this.props.gameID}</div>
+               <Beforeunload onBeforeunload={() => "Leaving this page will cause you to lose all data and not be able to return to your game."} />
                </>
                );
      }

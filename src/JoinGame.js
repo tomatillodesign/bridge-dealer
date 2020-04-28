@@ -17,7 +17,11 @@ class JoinGame extends React.Component {
                availableSeats: [],
                position: '',
                playerName: '',
-               warning: false
+               warning: false,
+               northName: '',
+               southName: '',
+               eastName: '',
+               westName: ''
           }
 
      }
@@ -112,24 +116,28 @@ class JoinGame extends React.Component {
 
             if( data.northName !== undefined ) {
                  console.log("NORTHNAME: " + data.northName);
+                 this.setState({ northName: data.northName });
             }
 
             if( data.southName !== undefined ) {
                console.log("SOUTHNAME: " + data.southName);
                availableSeats = availableSeats.filter(item => item !== 'South');
                console.log(availableSeats);
+               this.setState({ southName: data.southName });
             }
 
             if( data.eastName !== undefined ) {
                console.log("EASTNAME: " + data.eastName);
                availableSeats = availableSeats.filter(item => item !== 'East');
                console.log(availableSeats);
+               this.setState({ eastName: data.eastName });
             }
 
             if( data.westName !== undefined ) {
                console.log("WESTNAME: " + data.westName);
                availableSeats = availableSeats.filter(item => item !== 'West');
                console.log(availableSeats);
+               this.setState({ westName: data.westName });
             }
 
             this.setState({ availableSeats: availableSeats });
@@ -146,6 +154,8 @@ class JoinGame extends React.Component {
 
      render() {
 
+          console.log(this.state.northName);
+
           let form = null;
           if( this.state.gameID === '' ) {
                form = (
@@ -159,6 +169,10 @@ class JoinGame extends React.Component {
                          gameID={this.state.gameID}
                          setPlayerPosition={this.setPlayerPosition}
                          availableSeats={this.state.availableSeats}
+                         northName={this.state.northName}
+                         southName={this.state.southName}
+                         eastName={this.state.eastName}
+                         westName={this.state.westName}
                     />
                );
           } else if ( this.state.gameID !== '' && this.state.position !== '' && this.state.playerName === ''  ) {

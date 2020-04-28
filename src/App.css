@@ -339,8 +339,9 @@ footer a {
      font-family: 'Fredericka the Great', cursive;
 }
 
-
-
+.disabled {
+  color: #bbb;
+}
 
 
 /* --------- Animate the Cards ----------- */
