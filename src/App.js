@@ -1,6 +1,5 @@
 import React from 'react';
 import Landing from './Landing';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
           <Landing />
       </div>
       <footer className="clb-bridge-dealer-footer">
-              Bridge Dealer &middot; <a href="https://github.com/tomatillodesign/bridge-dealer" target="_blank">Version 1.0</a> &middot; By Chris Liu-Beers, <a href="http://tomatillodesign.com" target="_blank">Tomatillo Design</a>
+              Bridge Dealer &middot; <a href="https://github.com/tomatillodesign/bridge-dealer" target="_blank" rel="noopener noreferrer">Version 1.0</a> &middot; By Chris Liu-Beers, <a href="http://tomatillodesign.com" target="_blank" rel="noopener noreferrer">Tomatillo Design</a>
             </footer>
     </div>
   );

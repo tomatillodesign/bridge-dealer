@@ -3,7 +3,6 @@ import EnterGameID from './EnterGameID';
 import NameFormBasic from './NameFormBasic';
 import LiveGame from './LiveGame';
 import base from './base';
-import { firebaseApp } from './base';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -26,7 +25,6 @@ class CreateGame extends React.Component {
 
           const gameID = parseInt(id);
           console.log(parseInt(gameID));
-          let waitingCheck = true;
 
           let allGamesByID = null;
             base.fetch('allGames', {
@@ -40,7 +38,6 @@ class CreateGame extends React.Component {
               if( allGamesByID.includes(gameID) ) {
                    this.setState({ isValidGameID: false, duplicate: true });
                    console.log("ALREADY TAKEN");
-                   waitingCheck = false;
               } else {
                    // if new game number is unique, set isValidGameID to true and enter Name
                    console.log("WORKED");
@@ -50,20 +47,6 @@ class CreateGame extends React.Component {
             }).catch(error => {
               //handle error
          });
-
-
-
-         // if( waitingCheck === false ) {
-         //
-         //         base.post(`allGames/${gameID}`, {
-         //             data: { gameID: gameID }
-         //           }).then(() => {
-         //             console.log("Created New Game via base.post");
-         //           }).catch(err => {
-         //             // handle error
-         //           });
-         //
-         //      }
 
      }
 
@@ -100,7 +83,7 @@ class CreateGame extends React.Component {
 
      render() {
 
-          console.log(this.state.duplicate);
+          //console.log(this.state.duplicate);
 
           let liveGame = null
           if( this.state.playerName && this.state.gameID ) {

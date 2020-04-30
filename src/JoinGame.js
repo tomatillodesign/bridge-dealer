@@ -4,7 +4,6 @@ import NameFormBasic from './NameFormBasic';
 import SelectPosition from './SelectPosition';
 import LiveGame from './LiveGame';
 import base from './base';
-import { firebaseApp } from './base';
 
 ///////////////////////////////////////////////////////////////////////
 

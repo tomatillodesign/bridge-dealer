@@ -2,7 +2,6 @@ import React from 'react';
 import playingCards from './playingCards';
 
 import base from './base';
-import { firebaseApp } from './base';
 import { Beforeunload } from 'react-beforeunload';
 const shortid = require('shortid');
 
@@ -100,20 +99,22 @@ class LiveGame extends React.Component {
      dealNewHand = () => {
 
           // add the previous hand into allHands for historical reference
-          let previousHand = [];
-          previousHand['northCards'] = this.state.northCards;
-          previousHand['southCards'] = this.state.southCards;
-          previousHand['eastCards'] = this.state.eastCards;
-          previousHand['westCards'] = this.state.westCards;
-          this.setState(prevState => ({
-               allHands: [...prevState.allHands, previousHand],
-          }));
+          // let previousHand = [];
+          // previousHand['northCards'] = this.state.northCards;
+          // previousHand['southCards'] = this.state.southCards;
+          // previousHand['eastCards'] = this.state.eastCards;
+          // previousHand['westCards'] = this.state.westCards;
+          // this.setState(prevState => ({
+          //      allHands: [...prevState.allHands, previousHand],
+          // }));
 
+          const timeStamp = Date.now();
           const newDeck = [...playingCards];
           //console.log(newDeck);
 
           // Deal the cards to each player!
-          let cardsToDeal = this.shuffle(newDeck);
+          //let cardsToDeal = this.shuffle(newDeck);
+          this.shuffle(newDeck);
 
           let northCards = newDeck.splice(0,13);
           let southCards = newDeck.splice(0,13);
@@ -125,8 +126,20 @@ class LiveGame extends React.Component {
                southCards: southCards,
                eastCards: eastCards,
                westCards: westCards,
-               timestampLastDeal: Date.now()
+               timestampLastDeal: timeStamp
           });
+
+          // now store this new hand into the historical log of hands
+          let thisHand = [];
+          thisHand['northCards'] = northCards;
+          thisHand['southCards'] = southCards;
+          thisHand['eastCards'] = eastCards;
+          thisHand['westCards'] = westCards;
+          thisHand['timestampLastDeal'] = timeStamp;
+          this.setState(prevState => ({
+               allHands: [...prevState.allHands, thisHand],
+          }));
+
      }
 
 
@@ -259,7 +272,7 @@ class LiveGame extends React.Component {
                );
 
                if( this.state.northName && this.state.southName && this.state.eastName && this.state.westName ) {
-                    dealNewHandButton = (<div className="deal-new-hand-action-area"><button onClick={this.dealNewHand}>Deal New Hand 👍</button></div>);
+                    dealNewHandButton = (<div className="deal-new-hand-action-area"><button onClick={this.dealNewHand}>Deal New Hand <span role="img" aria-label="thumbs up">👍</span></button></div>);
                }
           }
 
