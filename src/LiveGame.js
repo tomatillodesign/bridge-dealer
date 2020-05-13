@@ -254,6 +254,8 @@ class LiveGame extends React.Component {
 
      render() {
 
+          console.log("updated Beforeunload 10:42am");
+
 
           // see which player is logged in and show only their cards
           let northCardsDisplay = null;
@@ -357,7 +359,7 @@ class LiveGame extends React.Component {
                     }
                </div>
                <div className="game-footer-info">Game ID#: {this.props.gameID}</div>
-               <Beforeunload onBeforeunload={() => "Leaving this page will cause you to lose all data and not be able to return to your game."} />
+               <Beforeunload onBeforeunload={event => event.preventDefault()} />
                </>
                );
      }
