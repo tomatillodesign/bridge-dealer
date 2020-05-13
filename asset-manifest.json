@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/bridge-dealer/static/css/main.765bb533.chunk.css",
-    "main.js": "/bridge-dealer/static/js/main.0b56433f.chunk.js",
-    "main.js.map": "/bridge-dealer/static/js/main.0b56433f.chunk.js.map",
+    "main.css": "/bridge-dealer/static/css/main.83655da7.chunk.css",
+    "main.js": "/bridge-dealer/static/js/main.a2cfc889.chunk.js",
+    "main.js.map": "/bridge-dealer/static/js/main.a2cfc889.chunk.js.map",
     "runtime-main.js": "/bridge-dealer/static/js/runtime-main.e042c523.js",
     "runtime-main.js.map": "/bridge-dealer/static/js/runtime-main.e042c523.js.map",
     "static/js/2.3c00cb8c.chunk.js": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js",
     "static/js/2.3c00cb8c.chunk.js.map": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.map",
     "index.html": "/bridge-dealer/index.html",
-    "precache-manifest.787dbfb81f8cda16fe7cd32d7a4bc0bf.js": "/bridge-dealer/precache-manifest.787dbfb81f8cda16fe7cd32d7a4bc0bf.js",
+    "precache-manifest.ca33278e979f288d5775d6f1fd95e76e.js": "/bridge-dealer/precache-manifest.ca33278e979f288d5775d6f1fd95e76e.js",
     "service-worker.js": "/bridge-dealer/service-worker.js",
-    "static/css/main.765bb533.chunk.css.map": "/bridge-dealer/static/css/main.765bb533.chunk.css.map",
+    "static/css/main.83655da7.chunk.css.map": "/bridge-dealer/static/css/main.83655da7.chunk.css.map",
     "static/js/2.3c00cb8c.chunk.js.LICENSE.txt": "/bridge-dealer/static/js/2.3c00cb8c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e042c523.js",
     "static/js/2.3c00cb8c.chunk.js",
-    "static/css/main.765bb533.chunk.css",
-    "static/js/main.0b56433f.chunk.js"
+    "static/css/main.83655da7.chunk.css",
+    "static/js/main.a2cfc889.chunk.js"
   ]
 }
