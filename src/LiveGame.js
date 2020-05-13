@@ -23,7 +23,7 @@ class LiveGame extends React.Component {
                eastCards: [],
                westCards: [],
                allHands: [],
-               timestampLastDeal: 0
+               timestampLastDeal: 0,
           }
 
           console.log(playingCards);
@@ -140,6 +140,14 @@ class LiveGame extends React.Component {
                allHands: [...prevState.allHands, thisHand],
           }));
 
+
+          // save current hand into localStorage
+          if(this.state.loggedIn === this.state.northName) { localStorage.setItem('bridgeDealer.currentHand', JSON.stringify(northCards)); }
+          if(this.state.loggedIn === this.state.southName) { localStorage.setItem('bridgeDealer.currentHand', JSON.stringify(southCards)); }
+          if(this.state.loggedIn === this.state.eastName) { localStorage.setItem('bridgeDealer.currentHand', JSON.stringify(eastCards)); }
+          if(this.state.loggedIn === this.state.westName) { localStorage.setItem('bridgeDealer.currentHand', JSON.stringify(westCards)); }
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
      }
 
 
@@ -239,7 +247,21 @@ class LiveGame extends React.Component {
        })
 
 
+       //////////////////////////////////////////////////////////////////////////////////////////////////////////
+       // Each player records their info into localStorage in case of disconnection
+       localStorage.setItem('bridgeDealer.loggedIn', this.props.loggedIn);
+       localStorage.setItem('bridgeDealer.gameID', this.props.gameID);
+
+       // get player position
+       if(this.state.loggedIn === this.state.northName) { localStorage.setItem('bridgeDealer.position', 'north'); }
+       if(this.state.loggedIn === this.state.southName) { localStorage.setItem('bridgeDealer.position', 'south'); }
+       if(this.state.loggedIn === this.state.eastName) { localStorage.setItem('bridgeDealer.position', 'east'); }
+       if(this.state.loggedIn === this.state.westName) { localStorage.setItem('bridgeDealer.position', 'west'); }
+       //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
      }
+
+
 
 
      isEmpty = (obj) => {
@@ -252,10 +274,24 @@ class LiveGame extends React.Component {
      }
 
 
+
+     cleanUp = (event) => {
+          event.preventDefault();
+          console.log("Clean UPPPPPPPPP");
+     }
+
+
+
+
+     componentWillUnmount() {
+
+          console.log("Component Will Unmount ------------------------------");
+
+     }
+
+
+
      render() {
-
-          console.log("updated Beforeunload 10:42am");
-
 
           // see which player is logged in and show only their cards
           let northCardsDisplay = null;
@@ -359,7 +395,7 @@ class LiveGame extends React.Component {
                     }
                </div>
                <div className="game-footer-info">Game ID#: {this.props.gameID}</div>
-               <Beforeunload onBeforeunload={event => event.preventDefault()} />
+               <Beforeunload onBeforeunload={this.cleanUp} />
                </>
                );
      }
