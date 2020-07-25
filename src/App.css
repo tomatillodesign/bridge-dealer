@@ -511,3 +511,18 @@ button a {
      }
 
 }
+
+
+
+@media only screen and (max-width: 500px) {
+
+     .single-hand li.card {
+         height: 140px;
+         width: 80px;
+         border-radius: 8px;
+         padding: 8px;
+         margin: 4px;
+         box-shadow: none;
+     }
+
+}

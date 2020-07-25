@@ -2,6 +2,8 @@ const playingCards = [
      {
           name: 'Two of Clubs',
           value: 2,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '2',
@@ -9,6 +11,8 @@ const playingCards = [
      {
           name: 'Three of Clubs',
           value: 3,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '3',
@@ -16,6 +20,8 @@ const playingCards = [
      {
           name: 'Four of Clubs',
           value: 4,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '4',
@@ -23,6 +29,8 @@ const playingCards = [
      {
           name: 'Five of Clubs',
           value: 5,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '5',
@@ -30,6 +38,8 @@ const playingCards = [
      {
           name: 'Six of Clubs',
           value: 6,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '6',
@@ -37,6 +47,8 @@ const playingCards = [
      {
           name: 'Seven of Clubs',
           value: 7,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '7',
@@ -44,6 +56,8 @@ const playingCards = [
      {
           name: 'Eight of Clubs',
           value: 8,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '8',
@@ -51,6 +65,8 @@ const playingCards = [
      {
           name: 'Nine of Clubs',
           value: 9,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '9',
@@ -58,6 +74,8 @@ const playingCards = [
      {
           name: 'Ten of Clubs',
           value: 10,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: '10',
@@ -65,6 +83,8 @@ const playingCards = [
      {
           name: 'Jack of Clubs',
           value: 11,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: 'J',
@@ -72,6 +92,8 @@ const playingCards = [
      {
           name: 'Queen of Clubs',
           value: 12,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: 'Q',
@@ -79,6 +101,8 @@ const playingCards = [
      {
           name: 'King of Clubs',
           value: 13,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: 'K',
@@ -86,6 +110,8 @@ const playingCards = [
      {
           name: 'Ace of Clubs',
           value: 14,
+          suitValue: 1,
+          displayOrder: 2,
           suit: 'Clubs',
           symbol: '♣️',
           abbr: 'A',
@@ -93,6 +119,8 @@ const playingCards = [
      {
           name: 'Two of Diamonds',
           value: 2,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '2',
@@ -100,6 +128,8 @@ const playingCards = [
      {
           name: 'Three of Diamonds',
           value: 3,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '3',
@@ -107,6 +137,8 @@ const playingCards = [
      {
           name: 'Four of Diamonds',
           value: 4,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '4',
@@ -114,6 +146,8 @@ const playingCards = [
      {
           name: 'Five of Diamonds',
           value: 5,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '5',
@@ -121,6 +155,8 @@ const playingCards = [
      {
           name: 'Six of Diamonds',
           value: 6,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '6',
@@ -128,6 +164,8 @@ const playingCards = [
      {
           name: 'Seven of Diamonds',
           value: 7,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '7',
@@ -135,6 +173,8 @@ const playingCards = [
      {
           name: 'Eight of Diamonds',
           value: 8,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '8',
@@ -142,6 +182,8 @@ const playingCards = [
      {
           name: 'Nine of Diamonds',
           value: 9,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '9',
@@ -149,6 +191,8 @@ const playingCards = [
      {
           name: 'Ten of Diamonds',
           value: 10,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: '10',
@@ -156,6 +200,8 @@ const playingCards = [
      {
           name: 'Jack of Diamonds',
           value: 11,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: 'J',
@@ -163,6 +209,8 @@ const playingCards = [
      {
           name: 'Queen of Diamonds',
           value: 12,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: 'Q',
@@ -170,6 +218,8 @@ const playingCards = [
      {
           name: 'King of Diamonds',
           value: 13,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: 'K',
@@ -177,6 +227,8 @@ const playingCards = [
      {
           name: 'Ace of Diamonds',
           value: 14,
+          suitValue: 2,
+          displayOrder: 1,
           suit: 'Diamonds',
           symbol: '♦️',
           abbr: 'A',
@@ -184,6 +236,8 @@ const playingCards = [
      {
           name: 'Two of Hearts',
           value: 2,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '2',
@@ -191,6 +245,8 @@ const playingCards = [
      {
           name: 'Three of Hearts',
           value: 3,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '3',
@@ -198,6 +254,8 @@ const playingCards = [
      {
           name: 'Four of Hearts',
           value: 4,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '4',
@@ -205,6 +263,8 @@ const playingCards = [
      {
           name: 'Five of Hearts',
           value: 5,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '5',
@@ -212,6 +272,8 @@ const playingCards = [
      {
           name: 'Six of Hearts',
           value: 6,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '6',
@@ -219,6 +281,8 @@ const playingCards = [
      {
           name: 'Seven of Hearts',
           value: 7,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '7',
@@ -226,6 +290,8 @@ const playingCards = [
      {
           name: 'Eight of Hearts',
           value: 8,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '8',
@@ -233,6 +299,8 @@ const playingCards = [
      {
           name: 'Nine of Hearts',
           value: 9,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '9',
@@ -240,6 +308,8 @@ const playingCards = [
      {
           name: 'Ten of Hearts',
           value: 10,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: '10',
@@ -247,6 +317,8 @@ const playingCards = [
      {
           name: 'Jack of Hearts',
           value: 11,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: 'J',
@@ -254,6 +326,8 @@ const playingCards = [
      {
           name: 'Queen of Hearts',
           value: 12,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: 'Q',
@@ -261,6 +335,8 @@ const playingCards = [
      {
           name: 'King of Hearts',
           value: 13,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: 'K',
@@ -268,6 +344,8 @@ const playingCards = [
      {
           name: 'Ace of Hearts',
           value: 14,
+          suitValue: 3,
+          displayOrder: 3,
           suit: 'Hearts',
           symbol: '♥️',
           abbr: 'A',
@@ -275,6 +353,8 @@ const playingCards = [
      {
           name: 'Two of Spades',
           value: 2,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '2',
@@ -282,6 +362,8 @@ const playingCards = [
      {
           name: 'Three of Spades',
           value: 3,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '3',
@@ -289,6 +371,8 @@ const playingCards = [
      {
           name: 'Four of Spades',
           value: 4,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '4',
@@ -296,6 +380,8 @@ const playingCards = [
      {
           name: 'Five of Spades',
           value: 5,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '5',
@@ -303,6 +389,8 @@ const playingCards = [
      {
           name: 'Six of Spades',
           value: 6,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '6',
@@ -310,6 +398,8 @@ const playingCards = [
      {
           name: 'Seven of Spades',
           value: 7,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '7',
@@ -317,6 +407,8 @@ const playingCards = [
      {
           name: 'Eight of Spades',
           value: 8,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '8',
@@ -324,6 +416,8 @@ const playingCards = [
      {
           name: 'Nine of Spades',
           value: 9,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '9',
@@ -331,6 +425,8 @@ const playingCards = [
      {
           name: 'Ten of Spades',
           value: 10,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: '10',
@@ -338,6 +434,8 @@ const playingCards = [
      {
           name: 'Jack of Spades',
           value: 11,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: 'J',
@@ -345,6 +443,8 @@ const playingCards = [
      {
           name: 'Queen of Spades',
           value: 12,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: 'Q',
@@ -352,6 +452,8 @@ const playingCards = [
      {
           name: 'King of Spades',
           value: 13,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: 'K',
@@ -359,6 +461,8 @@ const playingCards = [
      {
           name: 'Ace of Spades',
           value: 14,
+          suitValue: 4,
+          displayOrder: 4,
           suit: 'Spades',
           symbol: '♠️',
           abbr: 'A',
